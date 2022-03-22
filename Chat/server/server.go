@@ -79,12 +79,12 @@ func initializeHubs(s *Server) {
 	go s.hubs[hub.name].run()
 
 	hub1 := newHub()
-	hub1.name = "#Teams"
+	hub1.name = "#Games"
 	s.hubs[hub1.name] = hub1
 	go s.hubs[hub1.name].run()
 
 	hub2 := newHub()
-	hub2.name = "#Zoom"
+	hub2.name = "#Movies"
 	s.hubs[hub2.name] = hub2
 	go s.hubs[hub2.name].run()
 }
@@ -105,7 +105,7 @@ func (s *Server) Join(c *Client, argument string) {
 	c.hub = h
 	c.hub.register <- c
 
-	plainMsg := fmt.Sprintf("%v joined the room %s", c.nick, argument)
+	plainMsg := fmt.Sprintf("%v: joined the room %s", c.nick, argument)
 
 	c.hub.broadcast <- []byte(plainMsg)
 
@@ -118,7 +118,7 @@ func (s *Server) QuitCurrentRoom(c *Client, arg string) {
 	if c.hub != nil {
 		c.hub.clients[c] = false
 
-		plainMsg := "Someone has left the room"
+		plainMsg := fmt.Sprintf("%v has left the room", c.nick)
 		c.hub.broadcast <- []byte(plainMsg)
 
 		hours, minutes, _ := time.Now().Clock()

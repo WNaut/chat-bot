@@ -3,6 +3,10 @@
 <head>
 <title>Chat</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<!-- CSS only -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+<!-- JavaScript Bundle with Popper -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 <script type="text/javascript">
 window.onload = function () {
     // if(!localStorage.getItem('token')) {
@@ -15,6 +19,7 @@ window.onload = function () {
         var li = document.createElement("li")
         var a = document.createElement("a");
         a.setAttribute("href", "#html");
+        a.className = "badge bg-primary"
         var text = document.createTextNode(room);
         a.appendChild(text)
         li.appendChild(a);
@@ -39,11 +44,11 @@ window.onload = function () {
                     rooms.appendChild(li);
 
                     rooms.children = "";
-                    var li = getRoomListItem("#Teams");
+                    var li = getRoomListItem("#Games");
                     rooms.appendChild(li);
 
                     rooms.children = "";
-                    var li = getRoomListItem("#Zoom");
+                    var li = getRoomListItem("#Movies");
                     rooms.appendChild(li);
                     return;
                 }

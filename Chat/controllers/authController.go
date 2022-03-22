@@ -127,10 +127,9 @@ func ExtractTokenMetadata(tokenString string) (*claims, error) {
 	if err != nil {
 		return nil, err
 	}
-	claims1, _ := token.Claims.(jwt.MapClaims)
-	fmt.Println(claims1)
+	claimsData, _ := token.Claims.(jwt.MapClaims)
 	return &claims{
-		Username: fmt.Sprintf("%v", claims1["user"]),
+		Username: fmt.Sprintf("%v", claimsData["user"]),
 	}, nil
 }
 

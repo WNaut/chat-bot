@@ -2,7 +2,7 @@
 <html lang="en" >
 <head>
   <meta charset="UTF-8">
-  <title>Simple Login Form Example</title>
+  <title>Chat bot Login</title>
   <base href="/">
   <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Rubik:400,700'>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -130,10 +130,9 @@
       <div class="input-field">
         <input type="password" placeholder="Password" id="password" autocomplete="new-password">
       </div>
-      <a href="#" class="link">Forgot Your Password?</a>
     </div>
     <div class="action">
-      <button>Register</button>
+      <button id="signup">Register</button>
       <button type="submit" id="submit">Sign in</button>
     </div>
   </form>
@@ -164,6 +163,9 @@
       });
       $("#login").submit(function(e){
           return false;
+      });
+      $("#signup").click(function(){
+        window.location.href = "http://localhost:8080/signup";
       });
     });
   </script>

@@ -2,7 +2,7 @@
 <html lang="en" >
 <head>
   <meta charset="UTF-8">
-  <title>Simple Login Form Example</title>
+  <title>Chat bot Register</title>
   <base href="/">
   <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Rubik:400,700'>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -15,7 +15,7 @@
   }
   
   body {
-    background: #e35869;
+    background: #7258e3;
     font-family: 'Rubik', sans-serif;
   }
   
@@ -122,7 +122,7 @@
 <!-- partial:index.partial.html -->
 <div class="login-form">
   <form id="login" method="post" >
-    <h1>Login</h1>
+    <h1>Register</h1>
     <div class="content">
       <div class="input-field">
         <input type="email" placeholder="Email" id="email" autocomplete="nope">
@@ -130,11 +130,10 @@
       <div class="input-field">
         <input type="password" placeholder="Password" id="password" autocomplete="new-password">
       </div>
-      <a href="#" class="link">Forgot Your Password?</a>
     </div>
     <div class="action">
-      <button>Register</button>
-      <button type="submit" id="submit">Sign in</button>
+      <button id="signIn">Sign in</button>
+      <button type="submit" id="submit">Register</button>
     </div>
   </form>
 </div>
@@ -160,6 +159,13 @@
           }).done(function(res) {
                 window.location.href = "http://localhost:8080/";
           });
+      });
+      $("#login").submit(function(e){
+          return false;
+      });
+
+      $("#signIn").click(function(){
+        window.location.href = "http://localhost:8080/";
       });
       $("#login").submit(function(e){
           return false;
