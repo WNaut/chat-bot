@@ -3,6 +3,7 @@ package queue
 import (
 	"encoding/json"
 	"fmt"
+	"goChallenge/chatbot/config"
 	"log"
 
 	"github.com/streadway/amqp"
@@ -15,9 +16,7 @@ type ClientMessage struct {
 }
 
 const (
-	STOOQ_QUEUE_NAME  = "chat_bot_stooq"
-	CLIENT_QUEUE_NAME = "chat_bot_client"
-	STOCK_URL         = "https://stooq.com/q/l/?f=sd2t2ohlcv&h&e=csv&s="
+	STOCK_URL = "https://stooq.com/q/l/?f=sd2t2ohlcv&h&e=csv&s="
 )
 
 var CONN *amqp.Connection
@@ -55,12 +54,12 @@ func failOnError(err error, msg string) {
 
 func ReceiveMessageDeliveryChannel() <-chan amqp.Delivery {
 	q, err := CHANNEL.QueueDeclare(
-		CLIENT_QUEUE_NAME, // name
-		false,             // durable
-		false,             // delete when unused
-		false,             // exclusive
-		false,             // no-wait
-		nil,               // arguments
+		config.RabbitConfig.ClientQueue, // name
+		false,                           // durable
+		false,                           // delete when unused
+		false,                           // exclusive
+		false,                           // no-wait
+		nil,                             // arguments
 	)
 	failOnError(err, "Failed to declare a queue")
 
@@ -80,12 +79,12 @@ func ReceiveMessageDeliveryChannel() <-chan amqp.Delivery {
 
 func SendMessage(message *ClientMessage) {
 	q, err := CHANNEL.QueueDeclare(
-		STOOQ_QUEUE_NAME, // name
-		false,            // durable
-		false,            // delete when unused
-		false,            // exclusive
-		false,            // no-wait
-		nil,              // arguments
+		config.RabbitConfig.StooqQueue, // name
+		false,                          // durable
+		false,                          // delete when unused
+		false,                          // exclusive
+		false,                          // no-wait
+		nil,                            // arguments
 	)
 	failOnError(err, "Failed to declare a queue")
 

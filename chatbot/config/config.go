@@ -39,11 +39,7 @@ var (
 
 // Load all the required configurations
 func Load() {
-
-	loadDbConfigurations("DB_CONFIG", &DbConfig)
-	loadDbConfigurations("APP_SERVER_PROPERTIES", &AppConfig)
 	loadDbConfigurations("RABBIT_CONFIG", &RabbitConfig)
-	loadDbConfigurations("JWT_CONFIG", &JwtConfig)
 }
 
 // Load de db congifurations

@@ -22,12 +22,6 @@ func loadRoutes(server *Server) *mux.Router {
 	return serviceRouter
 }
 
-func registerServiceRoutes(r *mux.Router, server *Server) {
-	setAuthRoutes(r, server)
-	r.HandleFunc("/home", serveHome)
-	r.HandleFunc("/chat", chatRoom)
-}
-
 func setAuthRoutes(r *mux.Router, server *Server) {
 	r.HandleFunc("/", loginForm)
 	r.HandleFunc("/ws", server.ServeWs)

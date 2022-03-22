@@ -3,12 +3,14 @@ package main
 import (
 	"encoding/json"
 	"fmt"
+	"goChallenge/chatbot/config"
 	"goChallenge/chatbot/queue"
 	"goChallenge/chatbot/stockService"
 	"log"
 )
 
 func main() {
+	config.Load()
 	amqp, err := queue.Connect()
 	if err != nil {
 		return
@@ -31,7 +33,6 @@ func main() {
 			message, err := stockService.GetStockQuote(cm.Message)
 			response := queue.ClientMessage{HubName: cm.HubName, ClientRemoteAddress: cm.ClientRemoteAddress, Message: message}
 			if err != nil {
-				//log.Fatal(err)
 				return
 			}
 
