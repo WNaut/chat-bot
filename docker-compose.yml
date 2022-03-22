@@ -1,0 +1,43 @@
+version: "3.7"
+
+services:
+  app:
+    image: chat
+    build:
+      context: chat
+    ports:
+      - 8080:8080
+    environment:
+      MYSQL_HOST: 'mysql'
+      MYSQL_USER: 'root'
+      MYSQL_PASSWORD: 'secret'
+      MYSQL_DB: 'chatbot'
+    env_file: .env
+
+  bot:
+    image: bot
+    build:
+      context: chatbot
+    env_file: .env  
+
+  mysql:
+    image: mariadb:10.5.8
+    restart: always
+    hostname: 'mysql'
+    environment:
+      MYSQL_DATABASE: 'chatbot'
+      MYSQL_ROOT_PASSWORD: 'secret'
+      MYSQL_USER: 'root'
+      MYSQL_PASSWORD: 'secret'
+    ports:
+      - "3306:3306"
+
+  rabbitmq:
+    image: rabbitmq:3-management
+    hostname: 'rabbitmq'
+    ports:
+      - 5672:5672
+      - 15672:15672
+
+volumes:
+  todo-mysql-data:

@@ -1,7 +1,7 @@
 # syntax=docker/dockerfile:1
 
 FROM golang:1.16-alpine
-WORKDIR /chat
+WORKDIR /chatbot
 
 COPY go.mod ./
 COPY go.sum ./
@@ -10,8 +10,6 @@ RUN go mod download
 
 ADD . ./
 
-RUN go build -o /challenge-chat
+RUN go build -o /challenge-chat-bot
 
-EXPOSE 8080
-
-CMD [ "/challenge-chat" ]
+CMD [ "/challenge-chat-bot" ]
