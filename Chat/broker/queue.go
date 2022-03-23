@@ -21,8 +21,8 @@ var (
 	ClientQueueName, StooqQueueName string
 )
 
+// start the connection with rabbit
 func Connect() (*amqp.Connection, error) {
-	// conn, err := amqp.Dial("amqp://guest:guest@localhost:5672/")
 	url := fmt.Sprintf("amqp://%s:%s@%s:%s/",
 		config.RabbitConfig.User,
 		config.RabbitConfig.Pwd,

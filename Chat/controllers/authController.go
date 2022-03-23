@@ -22,15 +22,7 @@ type tokenResponse struct {
 	Token string `json:"token"`
 }
 
-// swagger:route POST /auth/login Auth login
-// Signup an user
-//
-// responses:
-//	200:
-//  400: ErrorResponse
-//  500: Error
-
-// Signup users
+// Login users
 func HandleLogin(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 
@@ -69,6 +61,7 @@ func HandleLogin(w http.ResponseWriter, r *http.Request) {
 	EncodeResponse(w, jwtToken)
 }
 
+// Signup users
 func HandleSignup(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 
@@ -94,6 +87,7 @@ func HandleSignup(w http.ResponseWriter, r *http.Request) {
 	EncodeResponse(w, data)
 }
 
+// Retrieve the pwd hash
 func getHash(pwd []byte) (string, error) {
 	hash, err := bcrypt.GenerateFromPassword(pwd, bcrypt.MinCost)
 	if err != nil {
@@ -120,6 +114,7 @@ func generateJWT(c *claims) (tokenResponse, error) {
 	return tokenResponse{Token: tokenString}, nil
 }
 
+// Retrieve the token claims
 func ExtractTokenMetadata(tokenString string) (*claims, error) {
 
 	fmt.Println("Claims:")
@@ -133,6 +128,7 @@ func ExtractTokenMetadata(tokenString string) (*claims, error) {
 	}, nil
 }
 
+// verify the token signing
 func VerifyToken(tokenString string) (*jwt.Token, error) {
 	token, _ := jwt.Parse(tokenString, func(token *jwt.Token) (interface{}, error) {
 		//Make sure that the token method conform to "SigningMethodHMAC"

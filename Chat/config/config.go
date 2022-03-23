@@ -40,14 +40,14 @@ var (
 // Load all the required configurations
 func Load() {
 
-	loadDbConfigurations("DB_CONFIG", &DbConfig)
-	loadDbConfigurations("APP_SERVER_PROPERTIES", &AppConfig)
-	loadDbConfigurations("RABBIT_CONFIG", &RabbitConfig)
-	loadDbConfigurations("JWT_CONFIG", &JwtConfig)
+	loadConfigurations("DB_CONFIG", &DbConfig)
+	loadConfigurations("APP_SERVER_PROPERTIES", &AppConfig)
+	loadConfigurations("RABBIT_CONFIG", &RabbitConfig)
+	loadConfigurations("JWT_CONFIG", &JwtConfig)
 }
 
-// Load de db congifurations
-func loadDbConfigurations(envVariable string, i interface{}) {
+// Load the congifuration requested
+func loadConfigurations(envVariable string, i interface{}) {
 	dbConfig := os.Getenv(envVariable)
 
 	if err := json.Unmarshal([]byte(dbConfig), i); err != nil {
