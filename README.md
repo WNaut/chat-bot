@@ -45,19 +45,15 @@ The project is created with or uses:
 ## Setup
 Follow the next steps to run this project locally:
 
-1. Make sure you can run Go apps in your computer. For this, you'll need to have installed Go 1.16.6 or higher. (Download from [here](https://golang.org/dl/)).
+1. Open the project solution on your IDE of preference, look inside the **GoChallenge** folder for the `.env`and update the connection string if need it.
 
-2. Open the project solution on your IDE of preference, look inside the **GoChallenge** folder for the `.env`and update the connection string if need it.
-
-3. Open Powershell or Bash and run the next command to start the containers. It's **important** that you keep this Powershell or Bash window open while running the application.
+2. Open Powershell or Bash and run the next command to start the containers.
 ```
 docker-compose up -d
 ```
 ---
 
 ## Usage
-To run the application open each project, `chat` and `bot`, on individuals terminals, run `go build` on both of them, and then execute the resulting files or run `go run *.go`.
-
 Once the application is running, you just need to register as a user and login into the app to access the chatroom.
 
 The application will be serving on http://localhost:8080.
