@@ -7,9 +7,11 @@ import (
 	"goChallenge/chatbot/queue"
 	"goChallenge/chatbot/stockService"
 	"log"
+	"time"
 )
 
 func main() {
+	time.Sleep(10 * time.Second)
 	config.Load()
 	amqp, err := queue.Connect()
 	if err != nil {

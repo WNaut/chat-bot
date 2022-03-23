@@ -7,10 +7,11 @@ import (
 	"goChallenge/chat/db"
 	"goChallenge/chat/server"
 	"log"
+	"time"
 )
 
 func main() {
-
+	time.Sleep(10 * time.Second)
 	server.RoomsMessages = make(map[string][]string)
 
 	config.Load()
